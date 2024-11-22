@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/LoginPage.css' %}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #fff;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    .login-container {
+      display: flex;
+      width: 80%;
+      max-width: 900px;
+      background-color: #28a745;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px #fff;
+    }
+    .login-img {
+      width: 250px;
+      height: 250px;
+      margin-right: 20px;
+    }
+    .login-form {
+      flex-grow: 1;
+    }
+    .login-form label {
+      display: block;
+      margin-top: 10px;
+    }
+    .login-form input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .error {
+      color: red;
+      font-size: 0.875rem;
+    }
+    .register-link {
+      display: block;
+      margin-top: 10px;
+      text-decoration: none;
+      color: #fff;
+    }
+    .register-link:hover {
+      text-decoration: underline;
+      color: blue;
+    }
+    button {
+      background-color: red;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+      width: 100%;
+    }
+    button:hover {
+      background-color: darkred;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <img src="{% static 'css/assets/Login.jpg' %}" alt="login-avatar" class="login-img">
+    <div class="login-form">
+      <h2>Login Page</h2>
+      <p>
+        Event management is a process of organizing a professional and focused event for a particular target audience.
+        It involves visualizing concepts, planning, budgeting, and executing events such as fashion shows, musical
+        concerts, corporate seminars, exhibitions, wedding celebrations, theme parties, product launches, etc.
+      </p>
+      <form method="POST" action="{% url 'login' %}">
+        {% csrf_token %}
+        <label for="username">Enter Username</label>
+        <input type="text" id="username" name="username" required>
+        <span class="error" id="usernameError"></span>
+
+        <label for="password">Enter Password</label>
+        <input type="password" id="password" name="password" required>
+        <span class="error" id="passwordError"></span>
+
+        <button type="submit">Submit</button>
+      </form>
+      <a href="{% url 'register' %}" class="register-link">Click Here to Register yourself</a>
+    </div>
+  </div>
+</body>
+</html>

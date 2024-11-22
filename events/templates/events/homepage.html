@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Management Homepage</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <div class = "header-conent">
+            <h1>Welcome to Event Management</h1>
+            <p>Manage your events with ease and efficiency!</p>
+        </div>
+
+    <div class="main-content">
+        <!-- Top Navigation Bar -->
+        <nav>
+            {% if user.is_authenticated %}
+                <!-- Show logout and additional options for authenticated users -->
+                <a href="{% url 'logout' %}" class="top-nav-item">Logout</a>
+                <a href="{% url 'book_hall' %}" class="top-nav-item">Book Hall</a>
+                <a href="{% url 'check_availability' %}" class="top-nav-item">Check Hall Availability</a>
+                <a href="{% url 'submit_appointment' %}" class="top-nav-item">Book Appointment</a>
+                <a href="{% url 'view_appointments' %}" class="top-nav-item">View Appointments</a>
+                <a href="{% url 'view_profile' %}" class="top-nav-item">View Your Profile</a>
+            {% else %}
+                <!-- Show login and register options for guests -->
+                <a href="{% url 'login' %}" class="top-nav-item">Login</a>
+                <a href="{% url 'register' %}" class="top-nav-item">Register</a>
+            {% endif %}
+        </nav>
+    </header>
+    <div class="banner">
+        <img src="{% static 'css/assets/Event.jpg' %}" alt="Event Management" class="banner-img">
+        <div class="banner-text">
+            <h1>Event Quest</h1>
+            <h2>"Co-operate Event Management"</h2>
+            <p>Enjoy It</p>
+        </div>
+    <!--
+        <div class="content">
+        <h2>What We Do</h2>
+        <p>Event management is a process of organizing events like fashion shows, musical concerts, corporate seminars, exhibitions, and more.</p>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Event Management System. All rights reserved.</p>
+    </footer>
+    -->
+    </div>
+</div>
+</body>
+</html>

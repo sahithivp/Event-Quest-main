@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Available Halls</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-group input[type="date"],
+        .form-group input[type="time"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .btn-submit {
+            display: block;
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .btn-submit:hover {
+            background-color: #45a049;
+        }
+
+        .result-container {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .result-container h2 {
+            font-size: 20px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .result-container ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .result-container ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            font-size: 16px;
+        }
+
+        .result-container ul li:last-child {
+            border-bottom: none;
+        }
+
+        .no-availability {
+            color: red;
+            font-weight: bold;
+        }
+
+        .available {
+            color: green;
+            font-weight: bold;
+        }
+
+        .booked {
+            color: red;
+            font-weight: bold;
+        }
+
+        .note {
+            font-size: 14px;
+            color: #777;
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Check Available Halls</h1>
+
+        <form action="{% url 'check_availability' %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="date">Select Date:</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="time">Select Time:</label>
+                <input type="time" id="time" name="time" required>
+            </div>
+
+            <button type="submit" class="btn-submit">Check Availability</button>
+        </form>
+
+        <div class="result-container">
+            <h2>Available Halls</h2>
+            <ul>
+                {% for hall in available_halls %}
+                    <li>{{ hall.name }} <span class="available">Available</span></li>
+                {% endfor %}
+                {% if not available_halls %}
+                    <li class="no-availability">No halls available at this time.</li>
+                {% endif %}
+            </ul>
+
+            <h2>Booked Halls</h2>
+            <ul>
+                {% for hall in booked_halls %}
+                    <li>{{ hall.name }} <span class="booked">Booked</span></li>
+                {% endfor %}
+                {% if not booked_halls %}
+                    <li class="no-availability">No halls are booked at this time.</li>
+                {% endif %}
+            </ul>
+
+            <p class="note">* Availability is subject to change. Please check back closer to the booking date.</p>
+        </div>
+    </div>
+
+</body>
+
+</html>
