@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-s%kq#9q=flx!(azlwtu76y0pjr4j%+-r^)k5qc8l1app0(g283
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['event-quest.onrender.com', 'localhost']
 
 
 # Application definition
@@ -131,6 +131,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'events/static'),  # Add this line if you have multiple static folders
 ]
