@@ -1,0 +1,111 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #1c1c1c;
+    font-size: 30px;
+  }
+  
+  .login-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .login-content {
+    display: flex;
+    width: 80%;
+    max-width: 900px;
+  }
+  
+  .login-content h2 {
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .login-info {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+  }
+  
+  .login-info img {
+    width: 100px;
+    height: auto;
+    margin-right: 10px;
+  }
+  
+  .login-info p {
+    font-size: 14px;
+    color: #666;
+    text-align: left;
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  button {
+    padding: 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+  button:hover {
+    background-color: darkred;
+  }
+  
+  .error {
+    color: red;
+    font-size: 12px;
+  }
+  
+  .register-link {
+    margin-top: 10px;
+    color: blue;
+    cursor: pointer;
+  }
+  
+  .register-link:hover {
+    text-decoration: underline;
+  }
+
+  .login-image {
+  width: 150px;
+  height: auto; 
+  margin-right: 20px; 
+}
+ .login-form-container {
+    flex-grow: 1; 
+  }
+  .register-link {
+    cursor: pointer; 
+    color: blue; 
+    text-decoration: underline;
+    margin-top: 10px;
+  }

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Appointment</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Ensures content always fits the viewport */
+            margin: 0;
+            background-color: #f0f2f5;
+        }
+
+        .container {
+            width: 90%; /* Responsive width */
+            max-width: 400px; /* Ensures the container doesn't become too wide */
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden; /* Prevents content from spilling out of the container */
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"],
+        input[type="date"],
+        input[type="time"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            outline: none;
+            font-size: 1em;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+
+        .notes {
+            font-size: 0.9em;
+            color: #888;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .error {
+            color: red;
+            font-style: italic;
+            margin-top: 5px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Schedule Appointment</h1>
+        <form id="appointmentForm" action="{% url 'submit_appointment' %}" method="POST">
+            {% csrf_token %}
+
+            <!-- User Details -->
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" value="{{ form_data.name }}">
+                {% if errors.name %}
+                    <span class="error">{{ errors.name }}</span>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" value="{{ form_data.phone }}">
+                {% if errors.phone %}
+                    <span class="error">{{ errors.phone }}</span>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" value="{{ form_data.email }}">
+                {% if errors.email %}
+                    <span class="error">{{ errors.email }}</span>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <textarea id="address" name="address">{{ form_data.address }}</textarea>
+                {% if errors.address %}
+                    <span class="error">{{ errors.address }}</span>
+                {% endif %}
+            </div>
+
+            <!-- Appointment Details -->
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" value="{{ form_data.date }}">
+                {% if errors.date %}
+                    <span class="error">{{ errors.date }}</span>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="time">Time Slot:</label>
+                <input type="time" id="time" name="time" value="{{ form_data.time }}">
+                {% if errors.time %}
+                    <span class="error">{{ errors.time }}</span>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="purpose">Purpose of Appointment:</label>
+                <textarea id="purpose" name="purpose">{{ form_data.purpose }}</textarea>
+                {% if errors.purpose %}
+                    <span class="error">{{ errors.purpose }}</span>
+                {% endif %}
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="submit-btn">Submit Appointment</button>
+        </form>
+    </div>
+</body>
+</html>

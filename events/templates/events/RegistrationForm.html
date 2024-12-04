@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/RegistrationForm.css' %}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .error {
+      color: red;
+      font-size: 0.875rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="card">
+      <div class="card-body">
+        <h2 class="card-title mb-4">New Registration</h2>
+
+        <!-- Display Global Errors -->
+        {% if errors.general %}
+          <div class="alert alert-danger">
+            <ul>
+              <li>{{ errors.general }}</li>
+            </ul>
+          </div>
+        {% endif %}
+
+        <form method="POST">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" name="username" value="{{ request.POST.username }}">
+            {% if errors.username %}
+              <span class="error">{{ errors.username }}</span>
+            {% endif %}
+          </div>
+
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password">
+            {% if errors.password %}
+              <span class="error">{{ errors.password }}</span>
+            {% endif %}
+          </div>
+
+          <div class="mb-3">
+            <label for="confirmPassword" class="form-label">Re-enter Password</label>
+            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword">
+            {% if errors.confirmPassword %}
+              <span class="error">{{ errors.confirmPassword }}</span>
+            {% endif %}
+          </div>
+
+          <div class="mb-3">
+            <label for="phone" class="form-label">Mobile No</label>
+            <input type="text" class="form-control" id="phone" name="phone" value="{{ request.POST.phone }}">
+            {% if errors.phone %}
+              <span class="error">{{ errors.phone }}</span>
+            {% endif %}
+          </div>
+
+          <div class="mb-3">
+            <label for="dob" class="form-label">Date of Birth</label>
+            <input type="date" class="form-control" id="dob" name="dob" value="{{ request.POST.dob }}">
+            {% if errors.dob %}
+              <span class="error">{{ errors.dob }}</span>
+            {% endif %}
+          </div>
+
+          <div class="mb-3">
+            <label for="email" class="form-label">Mail Id</label>
+            <input type="email" class="form-control" id="email" name="email" value="{{ request.POST.email }}">
+            {% if errors.email %}
+              <span class="error">{{ errors.email }}</span>
+            {% endif %}
+          </div>
+
+          <div class="mb-3">
+            <label for="address" class="form-label">Address</label>
+            <input type="text" class="form-control" id="address" name="address" value="{{ request.POST.address }}">
+            {% if errors.address %}
+              <span class="error">{{ errors.address }}</span>
+            {% endif %}
+          </div>
+
+          <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="reset" class="btn btn-secondary">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
